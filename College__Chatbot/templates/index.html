@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VSB College Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script src="/static/chatbot.js" defer></script>
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white min-h-screen">
+  <!-- Header -->
+  <div class="w-full bg-white border-b shadow-sm py-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+      <div class="flex items-center space-x-4 text-center md:text-left">
+        <img src="{{ url_for('static', filename='Framelogo.png') }}" alt="VSB Logo" class="h-24 w-auto" />
+      </div>
+      <div class="mt-4 md:mt-0">
+        <a href="https://vsbec.edu.in/" target="_blank"
+           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          🌐 Visit Official Website
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slogan -->
+  <div class="text-center mt-6">
+    <p class="text-2xl text-red-600 font-bold tracking-wide" style="font-family: 'Orbitron', sans-serif;">
+      A Place For PLACEMENT
+    </p>
+  </div>
+
+  <!-- Optional Course Results (can be dynamically filled if needed later) -->
+  <div id="course_results" class="mb-4 text-left text-sm bg-gray-100 rounded p-4 max-h-64 overflow-y-auto hidden"></div>
+
+  <!-- Chat UI -->
+  <div class="flex justify-center mt-8 px-4">
+    <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-6 sm:p-10">
+      <h2 class="text-center text-2xl font-semibold text-indigo-800 mb-4">🤖 WELCOME To AI Chatbot</h2>
+
+      <!-- Messages Box -->
+      <div id="messages" class="h-[500px] overflow-y-auto border border-gray-300 rounded-lg p-4 bg-gray-50 space-y-4">
+        <!-- Messages will appear here -->
+      </div>
+
+      <!-- Input & Button -->
+      <div class="mt-4 flex items-center gap-2">
+        <input id="user_input" type="text" placeholder="Ask about admission, courses, hostel, etc..."
+               class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-400 focus:outline-none text-gray-700" />
+        <button onclick="sendMessage()"
+                class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
