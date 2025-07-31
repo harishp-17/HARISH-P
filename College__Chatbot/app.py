@@ -44,7 +44,7 @@ def get_pg_courses():
 def get_course_details(name_only):
     for course in course_data["ug"] + course_data["pg"]:
         if course["name"].lower() == name_only:
-            return f"📘 {course['name']}\n\n{course['desc']}"
+            return f" {course['name']}\n\n{course['desc']}"
     return None
 
 def get_bot_response(user_input):
@@ -52,7 +52,7 @@ def get_bot_response(user_input):
 
     if ("ug" in user_input and "course" in user_input) or ("undergraduate" in user_input):
         return get_ug_courses()
-    elif ("pg" in user_input and "course" in user_input) or ("postgraduate" in user_input):
+    elif any(term in user_input for term in ["pg", "postgraduate", "m.e", "me"]) and "course" in user_input:
         return get_pg_courses()
     elif "courses" in user_input or "departments" in user_input:
         return (
@@ -65,16 +65,16 @@ def get_bot_response(user_input):
             "Phone: 9994496212, 8220080832\n"
             "Website: https://vsbec.edu.in"
         )
-    elif "chairman" in user_input:
+    elif "founder" in user_input:
         return "Our Chairman is Mr. V.S. Balsamy, B.Sc., L.L.B., the visionary founder and guiding force behind V.S.B. Engineering College."
     elif "secretary" in user_input:
         return "Our Secretary is Mr. Vijay, who actively oversees the academic and administrative operations of the institution."
     elif "director" in user_input:
         return "Our Director is Mrs. Suganthi, dedicated to ensuring quality education and student success."
-    elif "principal" in user_input:
-        return "Our respected Principal is Dr. Vennila, an academic leader with a strong vision."
     elif "vice principal" in user_input:
         return "Our Vice Principal is Dr. T. Kirubha Shankar, ensuring smooth academic functioning."
+    elif "principal" in user_input:
+        return "Our respected Principal is Dr. Vennila, an academic leader with a strong vision."
     elif "hostel" in user_input:
         return "Yes! We provide separate hostel facilities for boys and girls with 24/7 security, Wi-Fi, mess, and study halls."
     elif "fees" in user_input and "cse" in user_input:
@@ -88,11 +88,27 @@ def get_bot_response(user_input):
     elif "bus" in user_input or "transport" in user_input:
         return "Yes, college buses cover major towns around Karur, Erode, Namakkal, and nearby districts."
     elif "okay" in user_input:
-        return "Thaks for visiting and Any help or details for college."
+        return "Thanks for visiting and Any help or details for college."
     elif "hi" in user_input or "hai" in user_input:
-        return "WELCOME TO V.S.B Engineering college AI Chatbot"
+        return "WELCOME TO VSB Engineering college AI Chatbot"
+    elif "creater" in user_input:
+        return " Creator of HARISH PALANISAMY is Currently Pursuing B.Tech CSBS at VSB Engineering college Karur."
 
-    # Course-specific responses
+    # PG specific
+    elif "power systems" in user_input or "me power" in user_input:
+        return (
+            "M.E. Power Systems Engineering focuses on advanced power generation, smart grids, and high-voltage systems."
+        )
+    elif "applied electronics" in user_input:
+        return (
+            "M.E. Applied Electronics emphasizes embedded systems, analog/digital circuit design, and VLSI technology."
+        )
+    elif "me cse" in user_input or "me computer science" in user_input or "pg cse" in user_input:
+        return (
+            "M.E. Computer Science and Engineering explores advanced topics in data science, machine learning, software architecture, and distributed systems."
+        )
+
+    # UG course-specific responses
     elif "csbs" in user_input or "computer science and business systems" in user_input:
         return (
             "B.Tech in Computer Science and Business Systems (CSBS) blends core computer science subjects with business concepts.\n"
